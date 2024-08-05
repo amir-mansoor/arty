@@ -6,11 +6,11 @@ const userSchema = new Schema({
   name: { type: String },
   email: { type: String, unique: true },
   password: { type: String },
-  arts: [],
+  avatar: { type: String },
+  arts: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 
 userSchema.methods.matchPassword = async function (password) {
-  // console.log(this.password);
   return await bcrypt.compare(password, this.password);
 };
 

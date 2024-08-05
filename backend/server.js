@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import connectToDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import artRoutes from "./routes/artRoutes.js";
 import { errorHandler, notFound } from "./middlewares/errorHandler.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 // connect to database
@@ -11,8 +13,10 @@ connectToDB();
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+app.use("/api/arts", artRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
