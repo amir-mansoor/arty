@@ -1,6 +1,19 @@
 import Art from "../models/artModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
+const getArtsController = asyncHandler(async (req, res) => {
+  const page = Number(req.params.id) || 1;
+  const perPage = 2;
+
+  const arts = await Art.find({})
+    .sort({ createdAt: -1 })
+    .lean()
+    .limit(perPage)
+    .skip(perPage * (page - 1));
+
+  res.json(arts);
+});
+
 const uploadArt = asyncHandler(async (req, res) => {
   const { title, image } = req.body;
 
@@ -45,4 +58,4 @@ const comment = asyncHandler(async (req, res) => {
   res.json({ msg: "comment added successfully" });
 });
 
-export { uploadArt, toggleLike, comment };
+export { uploadArt, toggleLike, comment, getArtsController };
