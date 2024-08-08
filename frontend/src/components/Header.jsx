@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  let userInfo = false;
+  const { userInfo } = useSelector((state) => state.auth);
   return (
     <div className="container-sm flex space-between mt-2">
       <h1 className="logo">Arty</h1>

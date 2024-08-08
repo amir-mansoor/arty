@@ -5,12 +5,20 @@ import userRoutes from "./routes/userRoutes.js";
 import artRoutes from "./routes/artRoutes.js";
 import { errorHandler, notFound } from "./middlewares/errorHandler.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 dotenv.config();
 
 // connect to database
 connectToDB();
 // create app variable
 const app = express();
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());

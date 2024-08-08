@@ -1,9 +1,20 @@
-import React from "react";
-
+import { useRegisterMutation } from "../slices/userApiSlice";
 const RegisterScreen = () => {
+  const [register] = useRegisterMutation();
+
+  const handleForm = async (e) => {
+    e.preventDefault();
+
+    const res = await register({
+      name: "asdcasdc",
+      email: "casdascd",
+      password: "asdcasdc",
+    }).unwrap();
+  };
+
   return (
     <div className="mt-4">
-      <form>
+      <form onSubmit={handleForm}>
         <div>
           <label htmlFor="name">Name</label>
           <input type="text" id="name" />
