@@ -96,3 +96,17 @@ form > div > button {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.hide {
+  display: none;
+  pointer-events: none;
+}
+
+.btn {
+  padding: 10px 5px 10px 5px;
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
